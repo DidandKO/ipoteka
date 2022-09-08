@@ -1,8 +1,7 @@
 import os
 import sys
-import unittest
-import faker.config
 from django.utils.translation import gettext_lazy as _
+from db_password import password
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -29,6 +28,8 @@ INSTALLED_APPS = [
     "drf_spectacular",
     # apps
     # "images.apps.ImagesConfig",
+    "MorOC.apps.MorocConfig",
+    'django_filters',
 ]
 
 MIDDLEWARE = [
@@ -73,8 +74,8 @@ DATABASES = {
         "ENGINE": "django.db.backends.postgresql",
         "NAME": "postgres",
         "USER": "postgres",
-        "PASSWORD": os.getenv("POSTGRES_PASSWORD"),
-        "HOST": "db",
+        "PASSWORD": password,
+        "HOST": "localhost",
         "PORT": 5432,
         "CONN_MAX_AGE": 600,
     }
@@ -129,4 +130,5 @@ SITE_ID = 1
 # REST
 REST_FRAMEWORK = {
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend']
 }

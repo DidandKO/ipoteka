@@ -1,10 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'MorOC/base.html' %}
+
+{% block title %}
+Главная страница
+{% endblock %}
+
+{% block content%}
+
+<div style="text-align: center; margin-top: 20px">
+<form method="post">
+    {% csrf_token %}
+    {{ form }}
+    <button class="btn btn-success" type="submit">Показать</button>
+</form>
+<span style="color: red;">{{ error }}</span>
+</div>
+
+
+<div style="background-color: grey; text-align: center; margin-top: 40px">
+
+    <div style="display: inline-block;">
+        <h2>Предложения банков</h2>
+        {% for bank_offer in bank_offers %}
+            <div class="alert alert-warning">
+                <h1><a href="{% url 'offer-detail' bank_offer.id %}"> {{ bank_offer }}</a></h1>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div style="display: inline-block;">
+        {% if payments %}
+            <h2>Ежемесячный платеж</h2>
+        {% endif %}
+        {% for payment in payments %}
+            <div class="alert alert-warning">
+                <h1>{{ payment}}</h1>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
+

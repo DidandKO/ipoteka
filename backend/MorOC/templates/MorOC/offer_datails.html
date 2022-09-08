@@ -1,10 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'MorOC/base.html' %}
+
+{% block title %} Детали {% endblock %}
+
+{% block content %}
+    <div class="w-25 p-8" style="background-color: blanchedalmond; text-align: center">
+        <h1>{{ offer.bank_name }}</h1>
+        <h2>Процентная ставка: {{ offer.min_mortgage_rate }} - {{ offer.max_mortgage_rate }}%</h2>
+        <h2>Срок погашения: {{ offer.term_min }} - {{ offer.term_max }} лет</h2>
+        <p>Общая сумма: {{ offer.price_min }} - {{ offer.price_max }} рублей</p>
+    </div>
+{% endblock %}
