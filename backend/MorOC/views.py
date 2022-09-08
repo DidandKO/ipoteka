@@ -45,6 +45,7 @@ def index(request):
     if request.method == 'POST':
         form = ClientRequest(request.POST)
         if form.is_valid():
+            bank_offers = filter_bank_offers(form)
             for bank_offer in bank_offers:
                 try:
                     payment = calc_payments(bank_offer, form)
@@ -52,10 +53,14 @@ def index(request):
                 except Exception as exc:
                     error = exc.args[0]
 
+            return render(request, 'MorOC/index.html', {"bank_offers": bank_offers,
+                                                        "form": form,
+                                                        "payments": payments,
+                                                        "error": error})
+
     return render(request, 'MorOC/index.html', {"bank_offers": bank_offers,
                                                 "form": form,
-                                                "payments": payments,
-                                                "error": error})
+                                                })
 
 
 def calc_payments(bank_offer, form):
@@ -69,3 +74,12 @@ def calc_payments(bank_offer, form):
     else:
         raise Exception('Срок не должен быть нулевым или отрицательным!')
     return int(payment)
+
+
+def filter_bank_offers(form):
+    bank_offers = BankOffer.objects.filter(price_min__lte=form.data['price'],
+                                          price_max__gte=form.data['price'],
+                                          term_min__lte=form.data['for_year'],
+                                          term_max__gte=form.data['for_year'])
+    print(bank_offers)
+    return bank_offers
