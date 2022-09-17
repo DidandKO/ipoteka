@@ -1,10 +1,8 @@
-# Шаблон тестового задания
+# Задане
 
 ## Техническое задание
 
 Необходимо разработать калькулятор ипотечных предложений на основе [примера](https://www.sravni.ru/ipoteka/?mortgagePurpose=1&creditAmount=11849421&initialAmount=1500000&mortgageTerm=120).
-
-[Пример API](https://documenter.getpostman.com/view/6802079/UVeAvonG) c образцами запросов который нужно реализовать
 
 ----
 
@@ -35,38 +33,8 @@
 ----
 
 ### Используемый стек
-1) Django. Обязательно
-2) [DRF](https://www.django-rest-framework.org/). Обязательно
-3) [django-filters](https://django-filter.readthedocs.io/en/stable/guide/usage.html). По желанию
+1) Django.
+2) [DRF]
+3) [django-filters]
 
 ----
-
-### Важно №1! Для облегчения проверки задания, ваше решение будет проверено интеграционным тестированием. Прохождение тестов является не обязательным условием сдачи задания.
-
-### Важно №2! Тестовые задания на других площадках (github, gitlab) проверяться на будут.
-
-----
-
-#### Для начала работы, сделайте форк репозитория (и сделайте его приватным), склонируйте его и начинайте разработку.
-
-Удачи!
-
-PS. Если не получается разобраться с docker, то ничего страшного. Просто разработайте сервис без него, как вам удобнее.
-
-----
-### Локальный запуск приложения
-#### Что бы поднять контейнеры
-```shell
-docker stop $(docker ps -aq)
-docker-compose -f docker-compose.yml -f docker-compose.override.yml up --build
-```
-#### Что бы зайти внутрь контейнера бекенда
-```shell
-docker-compose exec backend sh
-```
-Сервис будет доступен по ссылке [http://localhost:8000/admin/login/?next=/admin/](http://localhost:8000/admin/login/?next=/admin/)
-
-----
-О выполнении задания можно уведомить по почте a.kuzmenko@idaproject.com
-
-Так же можете задать вопросы лично мне (Telegram): @egor1344
